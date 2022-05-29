@@ -1,7 +1,5 @@
 package com.example.hypestore.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class User {
     private boolean accountVerified;
 
     @OneToMany(mappedBy = "user")
-    private List<Images> images;
+    private List<Item> images;
 
     public int getId() {
         return id;
@@ -64,11 +62,11 @@ public class User {
         this.roles = roles;
     }
 
-    public List<Images> getImages() {
+    public List<Item> getImages() {
         return images;
     }
 
-    public void setImages(List<Images> images) {
+    public void setImages(List<Item> images) {
         this.images = images;
     }
 }

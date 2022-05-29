@@ -1,6 +1,6 @@
 package com.example.hypestore.service;
 
-import com.example.hypestore.model.Images;
+import com.example.hypestore.model.Item;
 import com.example.hypestore.model.User;
 import com.example.hypestore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.List;
 
 @Service
@@ -49,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Images> getImagesForCurrentUser() {
+    public List<Item> getImagesForCurrentUser() {
         return userRepository.findByUserName(getCurrentUser().getUserName()).get().getImages();
     }
 }

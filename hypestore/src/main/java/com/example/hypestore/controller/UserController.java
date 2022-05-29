@@ -1,13 +1,10 @@
 package com.example.hypestore.controller;
 
-import com.example.hypestore.model.Images;
-import com.example.hypestore.model.MyUserDetails;
+import com.example.hypestore.model.Item;
 import com.example.hypestore.model.User;
+import com.example.hypestore.service.ItemService;
 import com.example.hypestore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,12 +13,14 @@ import java.util.List;
 @RequestMapping("/user")
 @CrossOrigin
 public class UserController {
+
     @Autowired
     private UserService userService;
 
-    @PostMapping("/registerUser")
+    @PostMapping("/register")
     public String add(@RequestBody User user){
-        return userService.registerUser(user);
+        userService.registerUser(user);
+        return "User was created";
     }
 
     @GetMapping("/getAll")
@@ -29,7 +28,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/deleteUser/{id}")
+    @GetMapping("/del/{id}")
     public String deleteUser(@PathVariable("id") int id)
     {
 
@@ -37,9 +36,12 @@ public class UserController {
         return "User was deleted";
     }
 
-    @GetMapping("/getImages")
-    public List<Images> getImages(){
+    @GetMapping("/getItems")
+    public List<Item> getImages(){
         return userService.getImagesForCurrentUser();
     }
+
+
+
 
 }

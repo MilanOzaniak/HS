@@ -26,11 +26,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/admin", "/images/deleteImage/*").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/", "/images/allImages", "/user/registerUser").permitAll()
+                .antMatchers("/admin","/user/getAll" ,"/user/del/*").hasRole("ADMIN")
+                .antMatchers("/user","/user/getItems","/item/create","/item/del/*").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/", "/item/getAll", "/user/register").permitAll()
                 .anyRequest().authenticated()
                 .and().httpBasic();
+
     }
 
     @Bean
